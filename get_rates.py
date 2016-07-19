@@ -1,6 +1,7 @@
 __author__ = 'saipc'
 import requests
 from bs4 import BeautifulSoup
+import datetime
 
 def get_current_rate(a, b):
     default_amount = 1
@@ -26,8 +27,12 @@ if __name__ == '__main__':
     a = 'usd'
     b = 'inr'
     currency_amount = get_current_rate(a, b)
-    print "Today's currency rate: %s to %s is %s" % (a, b, currency_amount)
     wire_amount = get_wire_rate('https://www.xoom.com/india/send-money')
-    print "Today's xoom rate: %s"%wire_amount
     delta = currency_amount - wire_amount
-    print "Difference is %s"%delta
+    time = datetime.date
+    op_string = "%s : %s\n" % (time.today().strftime("%d %B, %Y"), delta)
+    with open('deltas', 'a') as f:
+        f.write(op_string)
+        f.write("Today's currency rate: %s to %s is %s\n" % (a, b, currency_amount))
+        f.write("Today's xoom rate: %s\n" % wire_amount)
+
