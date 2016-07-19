@@ -2,6 +2,7 @@ __author__ = 'saipc'
 import requests
 from bs4 import BeautifulSoup
 import datetime
+import schedule
 
 def get_current_rate(a, b):
     default_amount = 1
@@ -23,7 +24,7 @@ def get_wire_rate(url):
     currency_amount = float(str(currency_string).split('=')[1].split(' ')[1])
     return currency_amount
 
-if __name__ == '__main__':
+def run_main():
     a = 'usd'
     b = 'inr'
     currency_amount = get_current_rate(a, b)
@@ -36,3 +37,7 @@ if __name__ == '__main__':
         f.write("Today's currency rate: %s to %s is %s\n" % (a, b, currency_amount))
         f.write("Today's xoom rate: %s\n" % wire_amount)
 
+if __name__ == '__main__':
+    schedule.every().day.do(run_main)
+    while True:
+        schedule.run_pending()
