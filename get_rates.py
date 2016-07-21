@@ -38,6 +38,6 @@ def run_main():
         f.write("Today's xoom rate: %s\n" % wire_amount)
 
 if __name__ == '__main__':
-    schedule.every().day.do(run_main)
+    schedule.every().day.at("08:30").do(run_main)
     while True:
         schedule.run_pending()
