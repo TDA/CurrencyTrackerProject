@@ -45,10 +45,9 @@ def autoPush():
     if pushStatus == 1:
         # means not up to date
         print "This repo is not up to date"
-        pushStatus = subprocess.call('gg.sh', shell=True)
+        pushStatus = subprocess.call('gg.sh updated', shell=True)
         if pushStatus != 128:
-            print pushStatus, repo, "pushed successfully"
-
+            print pushStatus, "pushed successfully"
 
 if __name__ == '__main__':
     schedule.every().day.at("08:30").do(run_main)
