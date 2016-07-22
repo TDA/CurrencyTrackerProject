@@ -1,3 +1,5 @@
+import subprocess
+
 __author__ = 'saipc'
 import requests
 from bs4 import BeautifulSoup
@@ -36,6 +38,17 @@ def run_main():
         f.write(op_string)
         f.write("Today's currency rate: %s to %s is %s\n" % (a, b, currency_amount))
         f.write("Today's xoom rate: %s\n" % wire_amount)
+
+def autoPush():
+    pushStatus = subprocess.call('git s | egrep --color=auto \'Your branch is up-to-date\'', shell=True)
+    # print pushStatus
+    if pushStatus == 1:
+        # means not up to date
+        print "This repo is not up to date"
+        pushStatus = subprocess.call('gg.sh', shell=True)
+        if pushStatus != 128:
+            print pushStatus, repo, "pushed successfully"
+
 
 if __name__ == '__main__':
     schedule.every().day.at("08:30").do(run_main)
