@@ -50,6 +50,7 @@ def autoPush():
             print pushStatus, "pushed successfully"
 
 if __name__ == '__main__':
+    run_main()
     schedule.every().day.at("08:30").do(run_main)
     while True:
         schedule.run_pending()
