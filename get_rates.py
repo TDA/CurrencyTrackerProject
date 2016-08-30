@@ -31,6 +31,10 @@ def run_main():
     b = 'inr'
     currency_amount = get_current_rate(a, b)
     xoom_wire_amount = get_wire_rate('https://www.xoom.com/india/send-money', ".xcma-fx-rate > .fx-rate")
+    # Might wanna add other popular currency conversion systems, e.g.
+    # Remitly
+    # Western Union
+    # TransferWise, etc
     delta = currency_amount - xoom_wire_amount
     time = datetime.date
     op_string = "%s : %s\n" % (time.today().strftime("%d %B, %Y"), delta)
